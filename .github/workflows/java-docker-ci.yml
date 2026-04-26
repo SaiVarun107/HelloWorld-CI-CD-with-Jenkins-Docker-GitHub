@@ -12,22 +12,10 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
 
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Compile Java application
-        run: |
-          find . -name "*.java"
-          javac $(find . -name "*.java")
-
       - name: Build Docker image
         run: |
           docker build -t hello-java-app .
 
       - name: Run Docker container
         run: |
-          docker run hello-java-app
-
+          docker run --rm hello-java-app
